@@ -27,3 +27,8 @@ n
 >src/main/java/com/yrgo/services/calls/CallHandlingService.java,5\5\5513c09177a0321a7247c6c8a904487d185d438e
 q
 Asrc/main/java/com/yrgo/services/diary/DiaryManagementService.java,5\4\54c78c573d12452bc60c826a32c04d0f74c9ac8c
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
+r
+Bsrc/main/java/com/yrgo/services/calls/CallHandlingServiceImpl.java,d\7\d721f377ff3f6060adb129ced314533cbf3f12b3
