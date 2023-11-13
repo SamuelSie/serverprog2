@@ -1,16 +1,0 @@
-
-v
-java:S2293!"YReplace the type specification in this constructor call with the diamond operator ("<>").(ßÙÆ 8€”ãË»1
-e
-java:S1854"CRemove this useless assignment to local variable "customerService".(Ëı‡’úÿÿÿÿ8³”ãË»1
-V
-java:S1481"4Remove this unused "customerService" local variable.(Ëı‡’úÿÿÿÿ8¹”ãË»1
-P
-java:S2110"."12" is not a valid value for setting "month".(ÏÄ†Íüÿÿÿÿ8Á”ãË»1
-K
-java:S2110 "."12" is not a valid value for setting "month".(ÉÒöş8Â”ãË»1
-F	java:S106("+Replace this use of System.err by a logger.(ÇÙ£W8É”ãË»1
-G	java:S106+"+Replace this use of System.out by a logger.(®ñéÑ8Ì”ãË»1
-G	java:S106."+Replace this use of System.out by a logger.(·Š´8Ï”ãË»1
-W
-java:S1128"5Remove this unused import 'com.yrgo.domain.Customer'.(ª½¸ãÿÿÿÿÿ8Ñ”ãË»1

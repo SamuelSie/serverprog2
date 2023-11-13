@@ -1,7 +1,0 @@
-
-u
-java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(Æ€÷J8÷ØÄœº1
-k
-java:S3824"IReplace this "Map.containsKey()" with a call to "Map.computeIfPresent()".(ÿá­‡þÿÿÿÿ8ªÚÄœº1
-v
-java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(žûÁ¡ùÿÿÿÿ8úÚÄœº1
