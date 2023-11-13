@@ -27,3 +27,8 @@ q
 Asrc/main/java/com/yrgo/services/diary/DiaryManagementService.java,5\4\54c78c573d12452bc60c826a32c04d0f74c9ac8c
 y
 Isrc/main/java/com/yrgo/services/diary/DiaryManagementServiceMockImpl.java,3\f\3f7fb3035eac662aa2e83cc5f78775438cbd3ef5
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
+r
+Bsrc/main/java/com/yrgo/services/calls/CallHandlingServiceImpl.java,d\7\d721f377ff3f6060adb129ced314533cbf3f12b3
