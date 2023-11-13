@@ -32,3 +32,11 @@ Asrc/main/java/com/yrgo/services/diary/DiaryManagementService.java,5\4\54c78c57
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 r
 Bsrc/main/java/com/yrgo/services/calls/CallHandlingServiceImpl.java,d\7\d721f377ff3f6060adb129ced314533cbf3f12b3
+b
+2src/main/java/com/yrgo/dataaccess/CustomerDao.java,0\8\080554effdc5b2f7b06bca0b87aeb3adcf70d4c9
+n
+>src/main/java/com/yrgo/dataaccess/RecordNotFoundException.java,a\a\aa4a24b32a271c530606ca6eafb55c9741b51924
+M
+src/log4j.properties.disabled,f\c\fc06903284f03e0e6d35776e82714a7534cd8f5a
+h
+8src/main/java/com/yrgo/dataaccess/ActionDaoJdbcImpl.java,1\0\109a929c2c26d96b52d48db986e31ee5523e20c1
