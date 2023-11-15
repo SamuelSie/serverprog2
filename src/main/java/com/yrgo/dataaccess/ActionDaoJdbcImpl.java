@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.List;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -40,11 +41,19 @@ public class ActionDaoJdbcImpl implements ActionDao {
 	}
 
 	public void update(Action actionToUpdate) throws RecordNotFoundException 	{
+		try {
 		this.template.update(UPDATE_SQL,actionToUpdate.getDetails(),actionToUpdate.isComplete(), actionToUpdate.getOwningUser(), actionToUpdate.getRequiredBy().getTime(),  actionToUpdate.getActionId() );
+		} catch (DataAccessException e) {
+			throw new RecordNotFoundException();
+		}
 	}
 
 	public void delete(Action oldAction) throws RecordNotFoundException 	{
+		try {
 		this.template.update(DELETE_SQL, oldAction.getActionId());
+		} catch (DataAccessException e) {
+			throw new RecordNotFoundException();
+		}
 	}
 }
 
