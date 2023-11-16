@@ -24,4 +24,5 @@ public interface CustomerDao {
 
 
 	public void addCall (Call newCall, String customerId) throws RecordNotFoundException;
+
 }

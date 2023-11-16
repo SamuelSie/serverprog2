@@ -21,7 +21,5 @@ public class CallHandlingServiceImpl implements CallHandlingService {
     public void recordCall(String customerId, Call newCall, Collection<Action> actions) throws CustomerNotFoundException {
         customerManagementService.recordCall(customerId, newCall);
         actions.forEach(action -> diaryManagementService.recordAction(action));
-
-
     }
 }

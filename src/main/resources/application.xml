@@ -1,12 +1,36 @@
-<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"  
-            "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+        "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
 
 <beans>
- <bean id="customerManagementService" class="com.yrgo.services.customers.CustomerManagementMockImpl" />
- <bean id="diaryManagementservice" class="com.yrgo.services.diary.DiaryManagementServiceMockImpl" />
+    <!-- Service Beans -->
+    <bean id="customerManagementService" class="com.yrgo.services.customers.CustomerManagementServiceProductionImpl">
+        <constructor-arg ref="customerDao"/>
+    </bean>
 
- <bean id="callHandlingService" class="com.yrgo.services.calls.CallHandlingServiceImpl">
-  <constructor-arg ref="customerManagementService" />
-  <constructor-arg ref="diaryManagementservice" />
- </bean>
+    <bean id="diaryManagementservice" class="com.yrgo.services.diary.DiaryManagementServiceMockImpl"/>
+
+    <bean id="callHandlingService" class="com.yrgo.services.calls.CallHandlingServiceImpl">
+        <constructor-arg ref="customerManagementService"/>
+        <constructor-arg ref="diaryManagementservice"/>
+    </bean>
+
+    <!-- Dao Beans -->
+    <bean id="customerDao" class="com.yrgo.dataaccess.CustomerDaoJdbcTemplateImpl"
+          init-method="createTables">
+        <constructor-arg ref="jdbcTemplate"/>
+    </bean>
+
+    <!-- Templates -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg ref="dataSource"/>
+    </bean>
+
+    <!-- DataSources -->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+          destroy-method="close">
+        <property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
+        <property name="url" value="jdbc:hsqldb:file:database.dat;shutdown=true"/>
+        <property name="username" value="sa"/>
+        <property name="password" value=""/>
+    </bean>
 </beans>
