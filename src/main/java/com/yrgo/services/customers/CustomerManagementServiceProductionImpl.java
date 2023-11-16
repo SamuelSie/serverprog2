@@ -8,7 +8,7 @@ import com.yrgo.domain.Customer;
 import java.util.List;
 
 public class CustomerManagementServiceProductionImpl implements CustomerManagementService{
-    private CustomerDao customerDao;
+    private final CustomerDao customerDao;
 
     public CustomerManagementServiceProductionImpl(CustomerDao customerDao) {
         this.customerDao = customerDao;
@@ -17,7 +17,6 @@ public class CustomerManagementServiceProductionImpl implements CustomerManageme
     @Override
     public void newCustomer(Customer newCustomer) {
         customerDao.create(newCustomer);
-
     }
 
     @Override

@@ -13,11 +13,11 @@
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
     <dependencies>
-    <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
         <dependency>
             <groupId>org.springframework</groupId>
-             <artifactId>spring-context</artifactId>
-             <version>5.3.28</version>
+            <artifactId>spring-context</artifactId>
+            <version>5.3.28</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
@@ -125,7 +125,6 @@
             <version>1.0.2.Final</version>
         </dependency>
 
-
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
@@ -145,16 +144,12 @@
             <artifactId>spring-test</artifactId>
             <version>5.3.24</version>
         </dependency>
-
-
-
     </dependencies>
 
     <build>
-
         <resources>
             <resource>
-                    <directory>src/main/resources</directory>
+                <directory>src/main/resources</directory>
             </resource>
         </resources>
 
@@ -165,7 +160,6 @@
                 <version>3.1.2</version>
             </plugin>
         </plugins>
-
     </build>
 
 </project>

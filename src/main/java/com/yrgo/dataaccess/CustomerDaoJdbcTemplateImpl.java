@@ -15,11 +15,11 @@ import java.util.List;
 
 public class CustomerDaoJdbcTemplateImpl implements CustomerDao {
     private static final String ADD_CUSTOMER = "INSERT INTO customer (COMPANY_NAME, EMAIL, TELEPHONE, NOTES) VALUES(?,?,?,?)";
-    private static final String GET_CUSTOMER = "SELECT * FROM CUSTOMER WHERE CUSTOMER_ID=?";
+    private static final String GET_CUSTOMER_BY_ID = "SELECT * FROM CUSTOMER WHERE CUSTOMER_ID=?";
     private static final String GET_CUSTOMER_BY_NAME = "SELECT * FROM CUSTOMER WHERE COMPANY_NAME=?";
     private static final String UPDATE_CUSTOMER = "UPDATE customer SET COMPANY_NAME=?, EMAIL=?, TELEPHONE=?, NOTES=? WHERE CUSTOMER_ID=?";
     private static final String DELETE_CUSTOMER = "DELETE FROM customer WHERE CUSTOMER_ID=?";
-    private static final String GET_ALL_CUSTOMER = "SELECT * FROM CUSTOMER";
+    private static final String GET_ALL_CUSTOMERS = "SELECT * FROM CUSTOMER";
     private static final String ADD_CALL = "INSERT INTO TBL_CALL (TIME_AND_DATE, NOTES, CUSTOMER_ID) VALUES(?,?,?)";
     private static final String GET_CALL_BY_CUSTOMER = "SELECT * FROM TBL_CALL WHERE CUSTOMER_ID=?";
 
@@ -42,7 +42,7 @@ public class CustomerDaoJdbcTemplateImpl implements CustomerDao {
     @Override
     public Customer getById(String customerId) throws RecordNotFoundException {
         try {
-            return this.template.queryForObject(GET_CUSTOMER, new CustomerRowMapper());
+            return this.template.queryForObject(GET_CUSTOMER_BY_ID, new CustomerRowMapper());
         } catch (EmptyResultDataAccessException e) {
             throw new RecordNotFoundException();
         }
@@ -73,13 +73,13 @@ public class CustomerDaoJdbcTemplateImpl implements CustomerDao {
 
     @Override
     public List<Customer> getAllCustomers() {
-        return this.template.query(GET_ALL_CUSTOMER, new CustomerRowMapper());
+        return this.template.query(GET_ALL_CUSTOMERS, new CustomerRowMapper());
     }
 
     @Override
     public Customer getFullCustomerDetail(String customerId) throws RecordNotFoundException {
         try {
-            Customer customer = this.template.queryForObject(GET_CUSTOMER, new CustomerRowMapper(), customerId);
+            Customer customer = this.template.queryForObject(GET_CUSTOMER_BY_ID, new CustomerRowMapper(), customerId);
             List<Call> calls = this.template.query(GET_CALL_BY_CUSTOMER, new CallRowMapper(), customerId);
             customer.setCalls(calls);
 
@@ -101,30 +101,12 @@ public class CustomerDaoJdbcTemplateImpl implements CustomerDao {
 
     private void createTables() {
         try {
-            /*if (!tableExists("CUSTOMER")) {
-            }*/
-                this.template.update("CREATE TABLE CUSTOMER (CUSTOMER_ID VARCHAR(10), COMPANY_NAME VARCHAR(255), EMAIL VARCHAR(70), TELEPHONE VARCHAR(20), NOTES VARCHAR(255))");
-
-        } catch (BadSqlGrammarException e) {
-            System.out.println("exception thrown by create table customer");
-        }
-        try {
-            /*if (!tableExists("TBL_CALL")) {
-            }*/
+            // IF NOT EXISTS does not work. Db has to be removed between runs.
+            this.template.update("CREATE TABLE CUSTOMER (CUSTOMER_ID VARCHAR(10), COMPANY_NAME VARCHAR(255), EMAIL VARCHAR(70), TELEPHONE VARCHAR(20), NOTES VARCHAR(255))");
             this.template.update("CREATE TABLE TBL_CALL (TIME_AND_DATE DATE, NOTES VARCHAR(255), CUSTOMER_ID VARCHAR(50))");
 
         } catch (BadSqlGrammarException e) {
-            System.out.println("Exception thrown by create talbe tbl_call");
-            e.printStackTrace();
-        }
-    }
-
-    private boolean tableExists(String tableName) {
-        try {
-            this.template.queryForObject("SELECT 1 FROM " + tableName + " WHERE 1 = 0", Integer.class);
-            return true;
-        } catch (EmptyResultDataAccessException e) {
-            return false;
+            System.err.println("Table already exists");
         }
     }
 }
@@ -148,6 +130,5 @@ class CallRowMapper implements RowMapper<Call> {
 
         return new Call(notes, timeAndDate);
     }
-
 }
 
