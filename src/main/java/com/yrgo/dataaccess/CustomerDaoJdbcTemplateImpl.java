@@ -2,17 +2,21 @@ package com.yrgo.dataaccess;
 
 import com.yrgo.domain.Call;
 import com.yrgo.domain.Customer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
+import javax.annotation.PostConstruct;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+@Repository("customerDao")
 public class CustomerDaoJdbcTemplateImpl implements CustomerDao {
     private static final String ADD_CUSTOMER = "INSERT INTO customer (COMPANY_NAME, EMAIL, TELEPHONE, NOTES) VALUES(?,?,?,?)";
     private static final String GET_CUSTOMER_BY_ID = "SELECT * FROM CUSTOMER WHERE CUSTOMER_ID=?";
@@ -25,6 +29,7 @@ public class CustomerDaoJdbcTemplateImpl implements CustomerDao {
 
     private JdbcTemplate template;
 
+    @Autowired
     public CustomerDaoJdbcTemplateImpl(JdbcTemplate template) {
         this.template = template;
     }
@@ -99,6 +104,7 @@ public class CustomerDaoJdbcTemplateImpl implements CustomerDao {
         }
     }
 
+    @PostConstruct
     private void createTables() {
         try {
             // IF NOT EXISTS does not work. Db has to be removed between runs.
