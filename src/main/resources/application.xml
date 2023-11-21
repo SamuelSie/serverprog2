@@ -1,5 +1,13 @@
+<<<<<<< Updated upstream
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
         "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+=======
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+>>>>>>> Stashed changes
 
 <beans>
     <!-- Service Beans -->
@@ -7,7 +15,18 @@
         <constructor-arg ref="customerDao"/>
     </bean>
 
+<<<<<<< Updated upstream
     <bean id="diaryManagementservice" class="com.yrgo.services.diary.DiaryManagementServiceMockImpl"/>
+=======
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd">
+>>>>>>> Stashed changes
 
     <bean id="callHandlingService" class="com.yrgo.services.calls.CallHandlingServiceImpl">
         <constructor-arg ref="customerManagementService"/>
@@ -33,4 +52,28 @@
         <property name="username" value="sa"/>
         <property name="password" value=""/>
     </bean>
+<<<<<<< Updated upstream
+=======
+
+    <!-- Transaction Manager -->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+          autowire="byName">
+    </bean>
+
+    <!-- Advice -->
+    <aop:config>
+        <aop:aspect ref="performanceTimingAdvice">
+            <aop:around method="performanceTimingMeasurement"
+                        pointcut="execution(* com.yrgo.services..*.*(..)) || execution(* com.yrgo.dataaccess..*.*(..))"/>
+            <aop:before method="beforeAdviceTesting"
+                        pointcut="execution(* com.yrgo.services..*.*(..)) || execution(* com.yrgo.dataaccess..*.*(..))"/>
+        </aop:aspect>
+    </aop:config>
+
+    <!-- Transaction Configuration -->
+    <tx:annotation-driven/>
+
+    <context:component-scan base-package="com.yrgo" />
+>>>>>>> Stashed changes
 </beans>
