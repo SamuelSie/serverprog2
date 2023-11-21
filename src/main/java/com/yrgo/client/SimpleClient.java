@@ -40,8 +40,8 @@ public class SimpleClient {
             System.out.println("That customer doesn't exist");
         }
 
-        System.out.println("Here are the outstanding actions:");
         Collection<Action> incompleteActions = diaryService.getAllIncompleteActions("rac");
+        System.out.println("Here are the outstanding actions:");
         for (Action next: incompleteActions){
             System.out.println(next);
         }
