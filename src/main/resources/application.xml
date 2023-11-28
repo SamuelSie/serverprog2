@@ -15,9 +15,21 @@
         https://www.springframework.org/schema/aop/spring-aop.xsd">
 
 
-    <!-- Templates -->
-    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"
-          autowire="constructor"/>
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan">
+            <list>
+                <value>com.yrgo.domain</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">create</prop>
+            </props>
+        </property>
+    </bean>
 
     <!-- DataSources -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
@@ -30,8 +42,8 @@
 
     <!-- Transaction Manager -->
     <bean id="transactionManager"
-          class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
-          autowire="byName">
+          class="org.springframework.orm.jpa.JpaTransactionManager"
+          autowire="byType">
     </bean>
 
     <!-- Advice -->
@@ -45,7 +57,6 @@
     </aop:config>
 
     <!-- Transaction Configuration -->
-    <tx:annotation-driven/>
-
+    <tx:annotation-driven transaction-manager="transactionManager"/>
     <context:component-scan base-package="com.yrgo"/>
 </beans>

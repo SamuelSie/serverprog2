@@ -34,15 +34,15 @@ public class SimpleClient {
         actions.add(action1);
         actions.add(action2);
 
-        try{
+        try {
             callService.recordCall("CS03939", newCall, actions);
-        }catch (CustomerNotFoundException e){
+        } catch (CustomerNotFoundException e) {
             System.out.println("That customer doesn't exist");
         }
 
         Collection<Action> incompleteActions = diaryService.getAllIncompleteActions("rac");
         System.out.println("Here are the outstanding actions:");
-        for (Action next: incompleteActions){
+        for (Action next : incompleteActions) {
             System.out.println(next);
         }
 

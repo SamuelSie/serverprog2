@@ -16,7 +16,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-@Repository("customerDao")
 public class CustomerDaoJdbcTemplateImpl implements CustomerDao {
     private static final String ADD_CUSTOMER = "INSERT INTO customer (COMPANY_NAME, EMAIL, TELEPHONE, NOTES) VALUES(?,?,?,?)";
     private static final String GET_CUSTOMER_BY_ID = "SELECT * FROM CUSTOMER WHERE CUSTOMER_ID=?";
@@ -29,7 +28,7 @@ public class CustomerDaoJdbcTemplateImpl implements CustomerDao {
 
     private JdbcTemplate template;
 
-    @Autowired
+
     public CustomerDaoJdbcTemplateImpl(JdbcTemplate template) {
         this.template = template;
     }
