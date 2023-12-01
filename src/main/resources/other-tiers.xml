@@ -31,15 +31,6 @@
         </property>
     </bean>
 
-    <!-- DataSources -->
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-          destroy-method="close">
-        <property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
-        <property name="url" value="jdbc:hsqldb:file:database.dat;shutdown=true"/>
-        <property name="username" value="sa"/>
-        <property name="password" value=""/>
-    </bean>
-
     <!-- Transaction Manager -->
     <bean id="transactionManager"
           class="org.springframework.orm.jpa.JpaTransactionManager"
